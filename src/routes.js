@@ -4,7 +4,9 @@ import {
     Switch
 } from "react-router-dom";
 import Home from './components/home/home';
-import Library from './components/library/library'
+import Library from './components/library/library';
+import Archive from './components/archive/archive';
+import BlankPage from './components/blankpage/blankpage';
 
 
 
@@ -13,7 +15,13 @@ export default function Router() {
 
             <Switch>
                 <Route path="/" component={Home} exact/>
-                <Route path="/library" component ={Library}/>
+                {/* 42J 42K */}
+                <Route path="/library" children ={(props)=>(
+                    props.match
+                    ? <Archive {...props}/>
+                    : <BlankPage {...props}/>
+                )}/>
+                <Route path="/archive" component={Archive}/>
             </Switch>
 
     )

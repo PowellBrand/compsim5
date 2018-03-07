@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactAudioPlayer from 'react-audio-player';
 import axios from 'axios';
-import {createBook} from '../../ducks/reducer';
+import {createBook, getBooks} from '../../ducks/reducer';
+import Archive from '../archive/archive';
 
 
 class Library extends Component {
@@ -25,7 +26,7 @@ class Library extends Component {
 
 
     render() {
-        // 36F
+        // 36F, 83D
         let bookInfo = this.state.bookData.map(book =>{
             <div>
                 <h2>Title: {book.title}</h2>
@@ -41,6 +42,7 @@ class Library extends Component {
                     <h1>Welcome to the Library</h1>
                     <div>
                         {bookInfo}
+                        <Archive bgColor={'lightbrown'}/>
                     </div>
                 </header>
              
@@ -49,6 +51,11 @@ class Library extends Component {
         )
     }
 }
+function mapStateToProps(state){
+    return{
+        bookData: state.bookData
+    }
+}
 
 
-export default (Library)
+export default  connect(mapStateToProps, {getBooks})(Library)
