@@ -18,6 +18,8 @@ massive(process.env.CONNECTIONSTRING).then(db => {
 const db = app.get('db');
 
 //endpoints
+app.get('/api/getBooks', controller.getBooks)
+app.post('/api/createBook', controller.createBook)
 
 app.listen(port, ()=>{
     console.log(`I'm here on port: ${port}`)
